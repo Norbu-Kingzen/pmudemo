@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${packageName}.${activityClass}" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        tools:context="${packageName}.${activityClass}" >
+        <!-- <Button
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/backCtn"
+            android:background="@drawable/round_button_gray"
+            android:textColor="@color/white" /> -->
+
+        <TextView
+            android:id="@+id/usernameLbl"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
+        <!-- <Button
+            android:id="@+id/activityBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@+string/activityCtn"
+            android:background="@drawable/round_button_blue"
+            android:textColor="@color/white" /> -->
+    </LinearLayout>
+    
+    <!-- <com.google.android.maps.MapView 
+           android:id="@+id/mapView"
+           android:layout_width="fill_parent"
+           android:layout_height="0dip"
+           android:layout_weight="1"
+           android:clickable="true"
+           android:apiKey="AIzaSyB50tre3jsS6ARBGErT2s0Z8CqqT003nyk" /> -->
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+		  android:id="@+id/map"
+		  android:layout_width="0dip"
+		  android:layout_height="0dip"
+		  android:layout_weight="1"
+		  class="com.google.android.gms.maps.SupportMapFragment"/>
+           <!-- <TextView
+	        android:layout_width="0dip"
+	        android:layout_height="0dip"
+	        android:textColor="@color/white"
+	        android:text="Google Map Here"
+	        android:gravity="center"
+	        android:layout_weight="1"/> -->
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        tools:context="${packageName}.${activityClass}" >
+
+        <Button
+            android:id="@+id/activityBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/round_button_gray"
+            android:text="@+string/activityCtn"
+            android:textColor="@color/white" />
+
+        <TextView
+	        android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/sendmsgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/round_button_gray"
+            android:text="@+string/sendmsgCtn"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</LinearLayout>

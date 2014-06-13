@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/glb_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="${packageName}.${activityClass}" >
+
+    	<TableLayout
+    	    android:layout_width="250dip"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="vertical"
+    	    android:shrinkColumns="0"
+    	    android:stretchColumns="0" >
+		    <TableRow android:layout_width="fill_parent"
+		        android:layout_height="wrap_content">
+		        <EditText
+			        android:id="@+id/unameTxt"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:maxLength="50"
+			        android:hint="@+string/unameHint" />
+		    </TableRow>
+		    <TableRow android:layout_width="fill_parent"
+		        android:layout_height="wrap_content">
+		        <EditText
+		            android:id="@+id/pwdTxt"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:maxLength="50"
+		            android:hint="@+string/pwdHint"
+		            android:inputType="textPassword" />
+		    </TableRow>
+		</TableLayout>
+
+    	<CheckBox
+    	    android:id="@+id/savepwdChk"
+    	    android:layout_width="250dip"
+    	    android:layout_height="wrap_content"
+    	    android:text="@+string/savepwdCtn"
+    	    android:textSize="12sp" />
+    	
+    	<TableLayout
+    	    android:layout_width="250dip"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginTop="20dp"
+    	    android:orientation="vertical"
+    	    android:shrinkColumns="0,1"
+    	    android:stretchColumns="0,1" >
+		    <TableRow 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content">
+
+		        <Button
+		            android:id="@+id/signinBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10dp"
+		            android:layout_marginRight="10dp"
+		            android:background="@drawable/round_button_blue"
+		            android:gravity="center"
+		            android:padding="10dip"
+		            android:text="@+string/signinCtn"
+		            android:textColor="@color/white" />
+
+		        <Button
+		            android:id="@+id/signin_resetBtn"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="10dp"
+		            android:layout_marginRight="10dp"
+		            android:background="@drawable/round_button_gray"
+		            android:gravity="center"
+		            android:padding="10dp"
+		            android:text="@+string/signin_resetCtn"
+		            android:textColor="@color/white" />
+
+		    </TableRow>
+		    <TableRow
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="10dp" >
+		        <TextView
+		            android:id="@+id/forgetpwdLbl"
+		            android:gravity="center"
+		            android:padding="10dip"
+		            android:text="@+string/forgetpwdCtn"
+		            android:textSize="12sp"
+		            android:width="100dip"  />
+		        <TextView
+		            android:id="@+id/signupLbl"
+		            android:gravity="center"
+		            android:padding="10dp"
+		            android:text="@+string/signupCtn"
+		            android:textSize="12sp"
+		            android:width="100dip"  />
+		    </TableRow>
+		</TableLayout>
+</LinearLayout>

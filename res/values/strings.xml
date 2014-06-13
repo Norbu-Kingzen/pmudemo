@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- loginActivity -->
+    <string name="app_name">pmudemo</string>
+    <string name="unameHint">Username</string>
+    <string name="pwdHint">Password</string>
+    <string name="signinCtn">Sign in</string>
+    <string name="signin_resetCtn">Reset</string>
+    <string name="forgetpwdCtn">Forget password</string>
+    <string name="signupCtn">Sign up</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="backCtn">Back</string>
+    <string name="activityCtn">Activity</string>
+    <string name="savepwdCtn">Save password</string>
+
+    <!-- MapActivity -->
+    <string name="sendmsgCtn">Message</string>
+    <string name="reserve1Ctn">Reserve1</string>
+    <string name="settings">Settings</string>
+    <string name="title_activity_act_list">ActListActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- ActListActivity -->
+    <string name="array_addinCtn">Add in</string>
+    
+</resources>
