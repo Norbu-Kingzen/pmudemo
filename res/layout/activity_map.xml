@@ -11,13 +11,18 @@
         android:background="@color/gray"
         android:orientation="horizontal"
         tools:context="${packageName}.${activityClass}" >
-        <!-- <Button
-            android:id="@+id/backBtn"
+
+        <Button
+            android:id="@+id/accountBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@+string/backCtn"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
             android:background="@drawable/round_button_gray"
-            android:textColor="@color/white" /> -->
+            android:text="@+string/accountCtn"
+            android:visibility="visible"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/usernameLbl"
@@ -29,13 +34,18 @@
             android:gravity="center"
             android:textColor="@color/white" />
 
-        <!-- <Button
-            android:id="@+id/activityBtn"
+        <Button
+            android:id="@+id/map_signinBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@+string/activityCtn"
-            android:background="@drawable/round_button_blue"
-            android:textColor="@color/white" /> -->
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/round_button_gray"
+            android:text="@+string/map_signinCtn"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
     </LinearLayout>
     
     <!-- <com.google.android.maps.MapView 

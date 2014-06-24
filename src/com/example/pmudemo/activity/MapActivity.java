@@ -33,7 +33,16 @@ public class MapActivity extends FragmentActivity {
     private Button sendMsgBtn;
     // Username label
 	private TextView usernameLbl;
+	private Button map_signinBtn;
+	private Button accountBtn;
 	
+	private void findViewByIds() {
+		activityBtn = (Button)this.findViewById(R.id.activityBtn);
+		sendMsgBtn = (Button)this.findViewById(R.id.sendmsgBtn);
+		usernameLbl = (TextView)this.findViewById(R.id.usernameLbl);
+		map_signinBtn = (Button)this.findViewById(R.id.map_signinBtn);
+		accountBtn = (Button)this.findViewById(R.id.accountBtn);
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,13 +50,15 @@ public class MapActivity extends FragmentActivity {
 		
 		setUpMapIfNeeded();
 		
-		activityBtn = (Button)this.findViewById(R.id.activityBtn);
+		findViewByIds();
+		
 		activityBtn.setOnClickListener(new ActivityBtnOnClickLsnr());
-		sendMsgBtn = (Button)this.findViewById(R.id.sendmsgBtn);
-		usernameLbl = (TextView)this.findViewById(R.id.usernameLbl);
+		sendMsgBtn.setOnClickListener(new MsgBtnOnClickLsnr());
+		map_signinBtn.setOnClickListener(new MapSigninBtnOnClickLsnr());
+		
 		Bundle bd = getIntent().getExtras(); 
-		String name = bd.getString( "username" );
-		usernameLbl.setText(name);
+//		String name = bd.getString( "username" );
+//		usernameLbl.setText(name);
 	}
 	
 	@Override
@@ -121,9 +132,37 @@ public class MapActivity extends FragmentActivity {
 		@Override
 		public void onClick(View v) {
 			Intent intent=new Intent();
-			intent.setClass(MapActivity.this, ActListActivity.class);
+			intent.setClass(MapActivity.this, ActsListActivity.class);
 			startActivity(intent);
 		}
-    	
     }
+	
+	/**
+	 * message button click listener
+	 * @author weishijie
+	 *
+	 */
+	class MsgBtnOnClickLsnr implements Button.OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Intent intent=new Intent();
+			intent.setClass(MapActivity.this, MessageActivity.class);
+			startActivity(intent);
+		}
+    }
+	
+	/**
+	 * signin button click listener
+	 * @author weishijie
+	 *
+	 */
+	class MapSigninBtnOnClickLsnr implements Button.OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Intent intent=new Intent();
+			intent.setClass(MapActivity.this, LoginActivity.class);
+			startActivity(intent);
+		}
+    }
+	
 }

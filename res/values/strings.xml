@@ -9,19 +9,40 @@
     <string name="signin_resetCtn">Reset</string>
     <string name="forgetpwdCtn">Forget password</string>
     <string name="signupCtn">Sign up</string>
-    <string name="title_activity_map">MapActivity</string>
-    <string name="backCtn">Back</string>
-    <string name="activityCtn">Activity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="accountCtn">Account</string>
+    <string name="map_signinCtn">Signin</string>
     <string name="savepwdCtn">Save password</string>
 
     <!-- MapActivity -->
     <string name="sendmsgCtn">Message</string>
     <string name="reserve1Ctn">Reserve1</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_act_list">ActListActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="activityCtn">Activity</string>
 
     <!-- ActListActivity -->
     <string name="array_addinCtn">Add in</string>
+    <string name="title_activity_acts_list">ActsListActivity</string>
+    <string name="title_activity_massage">MassageActivity</string>
+    <string name="hello_world">Hello world!</string>
     
+    <!-- MessageActivity -->
+    <string name="voice_not_hold_ctn">Hold to Talk</string>
+    <string name="voice_holded_ctn">Release to Send</string>
+    <string name="photo_send_ctn">Send photo</string>
+    <string name="slide_to_cancel">Move up to cancel</string>
+	<string name="release_to_cancel">Release to cancel</string>
+    
+    <!-- page contents -->
+    <string name="sdcard_not_available">SDCard is unavailable,please check.</string>
+    <string name="error_unsupport_record">Device not support for record</string>
+	<string name="error_create_file">Error occurred when creating file</string>
+	<string name="error_initial_record">Error occurred when initialing record</string>
+	<string name="error_recording">Error occurred when recording</string>
+	<string name="error_encoding">Error occurred when encoding the record</string>
+	<string name="error_writing_file">Error occurred when writing into file</string>
+	<string name="error_closing_file">Error occurred when closing file</string>
+	<string name="network_not_available">Network unavailable, please check</string>
+	<string name="error_file_not_exist">File not exist</string>
+
 </resources>
