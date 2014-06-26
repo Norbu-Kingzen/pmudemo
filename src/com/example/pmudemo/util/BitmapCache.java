@@ -14,6 +14,9 @@ import android.graphics.Bitmap;
 
 public class BitmapCache {
 
+	/**
+	 * 1级缓存（内存中）
+	 */
 	private Map<String, BitmapCacheBean> mBitmaps;
 	/**
 	 * 2级缓存（SD卡中）
@@ -26,6 +29,12 @@ public class BitmapCache {
 				.synchronizedMap(new HashMap<String, BitmapCacheBean>());
 	}
 
+	/**
+	 * Put a bitmap into L1 cache(as BitmapCacheBean)
+	 * 
+	 * @param key
+	 * @param bitmap
+	 */
 	public void put(String key, Bitmap bitmap)
 	{
 		if (!mBitmaps.containsKey(key))
@@ -34,13 +43,20 @@ public class BitmapCache {
 		}
 	}
 
+	/**
+	 * Whether specified resources exists in cache (include L1 cache and L2 cache)
+	 * 
+	 * @param key
+	 * @return
+	 */
 	public boolean containsKey(String key)
 	{
 		return mBitmaps.containsKey(key) || l2Cache.containsKey(key);
 	}
 	
 	/**
-	 * If BitmapCache contains specified resources
+	 * Whether specified resources exists in cache (include L1 cache and L2 cache)
+	 * 
 	 * @param key
 	 * @return
 	 */
@@ -52,20 +68,24 @@ public class BitmapCache {
 	public Bitmap get(String key)
 	{
 		Bitmap ret = null;
+		// L1 cache
 		if (mBitmaps.containsKey(key))
 		{
 			BitmapCacheBean bcb = mBitmaps.get(key);
 			if (bcb != null)
 			{
+				// TODO ask
 				bcb.setCount(bcb.getCount() + 1);
 				ret = bcb.getBitmap();
 			}
 		}
+		// L2 cache
 		else
 		{
 			Bitmap b = l2Cache.get(key);
 			if (b != null)
 			{
+				// Put into L1 cache(as BitmapCacheBean)
 				put(key, b);
 				ret = b;
 			}
@@ -78,6 +98,11 @@ public class BitmapCache {
 		return mBitmaps.entrySet().size();
 	}
 
+	/**
+	 * Convert bitmap map to bitmap list
+	 * 
+	 * @return List<Entry<String, BitmapCacheBean>>
+	 */
 	public List<Entry<String, BitmapCacheBean>> toList()
 	{
 		Set<Entry<String, BitmapCacheBean>> set = mBitmaps.entrySet();
@@ -86,12 +111,18 @@ public class BitmapCache {
 		return list;
 	}
 
+	/**
+	 * Remove last half of bitmaps in the L1 cache(memory)
+	 */
 	private void removeLastByLRU()
 	{
+		// Convert to list
 		Set<Entry<String, BitmapCacheBean>> set = mBitmaps.entrySet();
 		List<Entry<String, BitmapCacheBean>> list = new ArrayList<Entry<String, BitmapCacheBean>>(
 				set);
+		// Sort
 		Collections.sort(list, new CountComparator());
+		// Remove last half
 		for (int i = 0; i < set.size() / 2; i++)
 		{
 			Entry<String, BitmapCacheBean> e = list.get(i);
@@ -100,36 +131,56 @@ public class BitmapCache {
 		}
 	}
 
+	/**
+	 * Delete one third of the files stored in L2 cache(SDCard)
+	 */
 	public void removeSDCardCacheByLRU()
 	{
 		l2Cache.removeLastByLRU();
 	}
 
+	/**
+	 * Free memory
+	 */
 	public void freeMemory()
 	{
+		// Restore into L2 cache
 		cache2L2();
+		// Remove last half of bitmaps in the L1 cache(memory)
 		removeLastByLRU();
 	}
 
+	/**
+	 * Restore bitmaps stored in L1 cache to L2 cache
+	 */
 	private void cache2L2()
 	{
 		l2Cache.cache(this);
 	}
 
+	/**
+	 * Recycle bitmaps in L1 cache(memory)
+	 */
 	@SuppressWarnings({ "rawtypes" })
 	public void recycleBitmaps()
 	{
+		// Restore bitmaps stored in L1 cache to L2 cache
 		cache2L2();
 		Iterator<Entry<String, BitmapCacheBean>> itr = mBitmaps.entrySet()
 				.iterator();
 		while (itr.hasNext())
 		{
 			Map.Entry e = (Map.Entry) itr.next();
+			// Free entry
 			freeEntry(e);
 		}
 		mBitmaps.clear();
 	}
 
+	/**
+	 * Free entry
+	 * @param e
+	 */
 	@SuppressWarnings("rawtypes")
 	private void freeEntry(Map.Entry e)
 	{

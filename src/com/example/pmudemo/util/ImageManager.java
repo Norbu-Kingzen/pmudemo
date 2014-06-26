@@ -28,21 +28,39 @@ public class ImageManager {
 		mBitmaps = Collections.synchronizedMap(new HashMap<Object, Bitmap>());
 	}
 
+	/**
+	 * Judge if the specified bitmap exists in cache, if so, then get bitmap from cache,
+	 * else, store it into cache and then return it
+	 * 
+	 * @param resource resource
+	 * @return Bitmap
+	 */
 	public Bitmap getBitmap(int resource)
 	{
 		if (!mBitmaps.containsKey(resource))
 		{
 			BitmapFactory.Options opt = new BitmapFactory.Options();
 			opt.inPreferredConfig = Bitmap.Config.RGB_565;
+			// 是否可清除
 			opt.inPurgeable = true;
 			opt.inInputShareable = true;
+			// Open a data stream for reading a raw resource.
+			// it can only be used to open drawable, sound, and raw resources.
 			InputStream is = context.getResources().openRawResource(resource);
+			// Decode an input stream into a bitmap.
 			Bitmap bitmap = BitmapFactory.decodeStream(is, null, opt);
 			mBitmaps.put(resource, bitmap);
 		}
 		return mBitmaps.get(resource);
 	}
 
+	/**
+	 * Judge if the specified bitmap exists in cache, if exist, then get bitmap from cache,
+	 * else, store it into cache and then return it
+	 * 
+	 * @param path Image path
+	 * @return Bitmap
+	 */
 	public Bitmap getBitmapFromSd(String path)
 	{
 		if (!mBitmaps.containsKey(path))
@@ -56,6 +74,14 @@ public class ImageManager {
 		return mBitmaps.get(path);
 	}
 
+	/**
+	 * Judge if the specified net bitmap exists in cache, if exist, then get bitmap from cache,
+	 * else, download from net and store it into cache and then return it
+	 * 
+	 * @param url
+	 * @return
+	 * @throws BitmapLoadException
+	 */
 	public Bitmap getBitmap(String url) throws BitmapLoadException
 	{
 		if (url == null)
@@ -71,6 +97,7 @@ public class ImageManager {
 			Bitmap bitmap = null;
 			try
 			{
+				// Get bitmap input stream from net
 				URL myFileUrl = new URL(url);
 				HttpURLConnection conn = (HttpURLConnection) myFileUrl
 						.openConnection();
@@ -81,6 +108,7 @@ public class ImageManager {
 				opt.inPurgeable = true;
 				opt.inInputShareable = true;
 				InputStream is = conn.getInputStream();
+				// Decode an input stream into a bitmap
 				bitmap = BitmapFactory.decodeStream(is);
 				is.close();
 			} catch (MalformedURLException e)
@@ -99,6 +127,12 @@ public class ImageManager {
 		return cache.get(url);
 	}
 
+	/**
+	 * Judge if the net bitmap exists in the cache
+	 * 
+	 * @param url
+	 * @return
+	 */
 	public boolean containsBitmap(String url)
 	{
 		if (cache == null)
@@ -111,6 +145,12 @@ public class ImageManager {
 		}
 	}
 	
+	/**
+	 * Judge if the specified bitmap resource exists in the cache
+	 * 
+	 * @param resId
+	 * @return
+	 */
 	public boolean containsBitmap(int resId)
 	{
 		if (cache == null)
@@ -123,6 +163,7 @@ public class ImageManager {
 		}
 	}
 
+	// TODO ask
 	@SuppressWarnings({ "rawtypes" })
 	public void recycleBitmaps()
 	{
@@ -147,6 +188,9 @@ public class ImageManager {
 		}
 	}
 
+	/**
+	 * Free memory
+	 */
 	public void freeMem()
 	{
 		if (cache != null)

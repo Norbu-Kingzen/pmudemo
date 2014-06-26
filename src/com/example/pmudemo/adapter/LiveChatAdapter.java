@@ -7,7 +7,6 @@ import java.util.List;
 import com.example.pmudemo.R;
 import com.example.pmudemo.bean.MessageBean;
 import com.example.pmudemo.db.MsgDao;
-import com.example.pmudemo.util.BitmapLoadException;
 import com.example.pmudemo.util.ImageManager;
 import com.example.pmudemo.view.ChatListView.OnErrorClickListener;
 import com.example.pmudemo.view.ErrorViewHolder;
@@ -27,10 +26,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * @author weishijie
- *
- */
 /**
  * @author weishijie
  *
@@ -55,7 +50,8 @@ public class LiveChatAdapter extends BaseAdapter {
 		this.onErrorClickListener = onErrorClickListener;
 		md = new MsgDao(context);
 		im = new ImageManager(context);
-		ml = md.selectLast500();
+		// TODO 通过SharedPreferences得到ACTIVITY_ID或者，由上层调用传参数过来
+		ml = md.selectLast500(0);
 		for (MessageBean m : ml)
 		{
 //			final String f = m.getFaceUrl();
@@ -560,18 +556,40 @@ public class LiveChatAdapter extends BaseAdapter {
 	}
 	
 	public class ImgViewHolder extends ErrorViewHolder {
-		// Image
+		/**
+		 * Image
+		 */
 		ImageView pic;
-		// head phote
+		/**
+		 * Head phote
+		 */
 		ImageView img;
+		/**
+		 * Sent time
+		 */
 		TextView time;
 	}
 
 	public class VoiceViewHolder extends ErrorViewHolder {
+		/**
+		 * Play time
+		 */
 		TextView len;
+		/**
+		 * Head phote
+		 */
 		ImageView img;
+		/**
+		 * Sent time
+		 */
 		TextView time;
+		/**
+		 * Voice content
+		 */
 		View content;
+		/**
+		 * animation
+		 */
 		ImageView anim;
 	}
 

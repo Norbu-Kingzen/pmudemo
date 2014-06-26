@@ -12,6 +12,7 @@ public class MessageBean {
 	public static final int MESSAGE_VOICE_SEND = 2;
 	public static final int MESSAGE_VOICE_RECEIVE = 3;
 	private int id;
+	private int activityId;
 	private String msg;
 	private String imgUrl;
 	private String voiceUrl;
@@ -25,11 +26,12 @@ public class MessageBean {
 	{
 	}
 
-	public MessageBean(int id, int faceUrl, String msg, String imgUrl,
+	public MessageBean(int id,int activityId,  int faceUrl, String msg, String imgUrl,
 			String voiceUrl, long voiceLength, int type, long time,
 			boolean isError)
 	{
 		this.id = id;
+		this.activityId = activityId;
 		this.faceUrl = faceUrl;
 		this.msg = msg;
 		this.imgUrl = imgUrl;
@@ -46,6 +48,14 @@ public class MessageBean {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getActivityId() {
+		return activityId;
+	}
+
+	public void setActivityId(int activityId) {
+		this.activityId = activityId;
 	}
 
 	public String getMsg() {

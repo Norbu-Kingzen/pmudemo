@@ -116,7 +116,7 @@ public class ActsListActivity extends Activity {
 			
 			Log.v("ActsListActivity", "getView " + position + " " + convertView);
 			
-			// list项目多余1个屏幕时后续item不会被一次性加载，当向上滑动屏幕时就会进入if分支
+			// list项目多于1个屏幕时后续item不会被一次性加载，当向上滑动屏幕时就会进入if分支
 			if (convertView == null) {
 				holder=new ViewHolder();
 				// 加载listItem的布局文件

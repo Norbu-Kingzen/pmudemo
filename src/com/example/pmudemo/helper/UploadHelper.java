@@ -32,7 +32,9 @@ public class UploadHelper {
 	 * Upload file to server
 	 * 本方法采用“混编格式”实现上传
 	 * 混编格式，即混合多种资料格式并一次传送，当然非文字资料必须要编码为二进制字符串
-	 * 参考：http://www.cnblogs.com/shanyou/archive/2013/06/07/3123155.html
+	 * 参考：
+	 * http://www.cnblogs.com/shanyou/archive/2013/06/07/3123155.html
+	 * http://www.faqs.org/rfcs/rfc2388.html
 	 * 
 	 * @param file file need to upload
 	 * @param RequestURL request url

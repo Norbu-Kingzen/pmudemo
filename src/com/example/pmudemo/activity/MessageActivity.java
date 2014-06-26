@@ -72,6 +72,10 @@ public class MessageActivity extends Activity {
      * Temporary head photo for me
      */
     private final int HEADPHOTO_URL_ME = R.drawable.default_head_photo;
+    /**
+     * Activity id
+     */
+    private final int ACTIVITY_ID = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +96,6 @@ public class MessageActivity extends Activity {
 						sendObject(mb.getImgUrl(), true, null, null, -1);
 					}else if(mb.getType() == MessageBean.MESSAGE_VOICE_SEND){
 						sendObject(mb.getVoiceUrl(), true, null, null, mb.getVoiceLength());
-					}else{
-						
 					}
 					clv.updateMessage(mb);
 				}
@@ -121,7 +123,8 @@ public class MessageActivity extends Activity {
 							getResString(R.string.sdcard_not_available));
 					return false;
 				}
-				else {
+				else 
+				{
 					// construct voice dialog
 					vDialog = new VoiceDialog(MessageActivity.this);
 					vDialog.show();
@@ -209,7 +212,6 @@ public class MessageActivity extends Activity {
 						});
 					}
 					mRecMicToMp3.start();
-					// TODO 不应该是true吗？ 
 					return false;
 				}
 			}
@@ -287,7 +289,6 @@ public class MessageActivity extends Activity {
 					}
 					break;
 				}
-				// TODO 不应该是true吗？
 				return false;
 			}
 		});
@@ -311,7 +312,7 @@ public class MessageActivity extends Activity {
 	}
 	
 	/**
-	 * Send voice or photo messages
+	 * Upload voice or photo messages
 	 * 
 	 * @param filePath
 	 * @param isReSend
@@ -341,8 +342,9 @@ public class MessageActivity extends Activity {
 								if(length != -1){
 									// Not resend
 									if(!isReSend){
+										// TODO onCreate时需要得到ACTIVITY_ID
 										MessageBean mb = new MessageBean(
-												0, HEADPHOTO_URL_ME, null, null,
+												0, ACTIVITY_ID, HEADPHOTO_URL_ME, null, null,
 												filePath, length,
 												MessageBean.MESSAGE_VOICE_SEND,
 												System.currentTimeMillis(),
@@ -352,7 +354,7 @@ public class MessageActivity extends Activity {
 								}else{
 									// Uploaded data is a image file
 									if(!isReSend){
-										MessageBean mb = new MessageBean(0, HEADPHOTO_URL_ME,
+										MessageBean mb = new MessageBean(0, ACTIVITY_ID, HEADPHOTO_URL_ME,
 												null, filePath, null, 0,
 												MessageBean.MESSAGE_IMG_SEND,
 												System.currentTimeMillis(), false);
@@ -372,7 +374,7 @@ public class MessageActivity extends Activity {
 								if(length != -1){
 									if(!isReSend){
 										MessageBean mb = new MessageBean(
-												0, HEADPHOTO_URL_ME, null, null,
+												0, ACTIVITY_ID, HEADPHOTO_URL_ME, null, null,
 												filePath, length,
 												MessageBean.MESSAGE_VOICE_SEND,
 												System.currentTimeMillis(),
@@ -381,7 +383,7 @@ public class MessageActivity extends Activity {
 									}
 								}else{
 									if(!isReSend){
-										MessageBean mb = new MessageBean(0, HEADPHOTO_URL_ME,
+										MessageBean mb = new MessageBean(0, ACTIVITY_ID, HEADPHOTO_URL_ME,
 												null, filePath, null, 0,
 												MessageBean.MESSAGE_IMG_SEND,
 												System.currentTimeMillis(), true);

@@ -39,6 +39,8 @@ public class BitmapCacheSD {
 	}
 
 	/**
+	 * Restore bitmaps stored in L1 cache to L2 cache (save as png)
+	 * 
 	 * @param l1Cache 1级缓存
 	 */
 	public void cache(BitmapCache l1Cache)
@@ -53,10 +55,11 @@ public class BitmapCacheSD {
 				String path = null;
 				try
 				{
+					// Specify the path to local sd cache path
 					path = dir.getAbsolutePath() + "/" + getMD5(key);
 				} catch (NoSuchAlgorithmException e2)
 				{
-					Log.e("Utils", "URL to MD5 error.");
+					Log.e("Util", "URL to MD5 error.");
 					e2.printStackTrace();
 				}
 				if (path != null)
@@ -64,6 +67,7 @@ public class BitmapCacheSD {
 					Bitmap b = e.getValue().getBitmap();
 					try
 					{
+						// Save bitmap to sd cache path, as png
 						saveBitmapAsPng(b, path, false);
 					} catch (IOException e1)
 					{
@@ -121,13 +125,18 @@ public class BitmapCacheSD {
 		return bitmap;
 	}
 
+	/**
+	 * Delete one third of the files stored in L2 cache(SDCard)
+	 */
 	public void removeLastByLRU()
 	{
 		if (getTotalCacheSize() > CACHE_FOLDER_SIZE_LIMIT_IN_MB)
 		{
 			File[] files = dir.listFiles();
 			List<File> fileList = Arrays.asList(files);
+			// Sort by last modified time
 			Collections.sort(fileList, new LastModifiedDesComparator());
+			// Delete one third of the files
 			for (int i = 0; i < fileList.size() / 3; i++)
 			{
 				fileList.get(i).delete();
@@ -180,6 +189,12 @@ public class BitmapCacheSD {
 		return sb.toString();
 	}
 
+	/**
+	 * Get a bitmap from sd card
+	 * 
+	 * @param path path
+	 * @return Bitmap
+	 */
 	public static Bitmap getBitmapFromSD(String path)
 	{
 		BitmapFactory.Options opt = new BitmapFactory.Options();
@@ -190,6 +205,15 @@ public class BitmapCacheSD {
 		return bitmap;
 	}
 
+	/**
+	 * Save bitmaps as png to specified path
+	 * 
+	 * @param bitmap
+	 * @param path
+	 * @param isOverwrite
+	 * @return
+	 * @throws IOException
+	 */
 	private String saveBitmapAsPng(Bitmap bitmap, String path,
 			boolean isOverwrite) throws IOException
 	{
