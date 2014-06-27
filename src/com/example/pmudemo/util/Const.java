@@ -13,6 +13,14 @@ import android.os.Environment;
 public class Const {
 	
 	/**
+	 * Empty string
+	 */
+	public static final String BLANK = "";
+	/**
+	 * Login url
+	 */
+	public static final String URL_LOGIN = "";
+	/**
 	 * voice store path
 	 */
 	public static final String VOICEPATH = Environment

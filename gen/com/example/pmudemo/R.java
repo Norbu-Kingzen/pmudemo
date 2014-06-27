@@ -1742,13 +1742,16 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f05001e;
+        public static final int err_login_failed=0x7f050051;
         public static final int error_closing_file=0x7f05004c;
         public static final int error_create_file=0x7f050047;
         public static final int error_encoding=0x7f05004a;
         public static final int error_file_not_exist=0x7f05004e;
         public static final int error_initial_record=0x7f050048;
+        public static final int error_password_null=0x7f050050;
         public static final int error_recording=0x7f050049;
         public static final int error_unsupport_record=0x7f050046;
+        public static final int error_username_null=0x7f05004f;
         public static final int error_writing_file=0x7f05004b;
         public static final int forgetpwdCtn=0x7f050032;
         public static final int hello_world=0x7f05003f;

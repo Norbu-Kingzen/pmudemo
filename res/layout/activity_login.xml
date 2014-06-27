@@ -20,6 +20,7 @@
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
 			        android:maxLength="50"
+			        android:singleLine="true"
 			        android:hint="@+string/unameHint" />
 		    </TableRow>
 		    <TableRow android:layout_width="fill_parent"
@@ -29,6 +30,7 @@
 		            android:layout_width="fill_parent"
 		            android:layout_height="wrap_content"
 		            android:maxLength="50"
+		            android:singleLine="true"
 		            android:hint="@+string/pwdHint"
 		            android:inputType="textPassword" />
 		    </TableRow>

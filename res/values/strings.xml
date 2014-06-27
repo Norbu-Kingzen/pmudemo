@@ -44,5 +44,8 @@
 	<string name="error_closing_file">Error occurred when closing file</string>
 	<string name="network_not_available">Network unavailable, please check</string>
 	<string name="error_file_not_exist">File not exist</string>
+	<string name="error_username_null">Username is required</string>
+	<string name="error_password_null">Password is required</string>
+	<string name="err_login_failed">Invalid username/password</string>
 
 </resources>
