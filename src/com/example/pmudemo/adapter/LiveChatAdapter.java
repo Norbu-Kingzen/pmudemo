@@ -49,7 +49,7 @@ public class LiveChatAdapter extends BaseAdapter {
 	{
 		this.onErrorClickListener = onErrorClickListener;
 		md = new MsgDao(context);
-		im = new ImageManager(context);
+		im = ImageManager.getInstance(context);
 		// TODO 通过SharedPreferences得到ACTIVITY_ID或者，由上层调用传参数过来
 		ml = md.selectLast500(0);
 		for (MessageBean m : ml)
